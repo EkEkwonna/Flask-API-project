@@ -46,6 +46,13 @@ user_args = reqparse.RequestParser()
 user_args.add_argument('name',type = str,required = True , help = 'Name cannot be blank')
 user_args.add_argument('email',type = str,required = True , help = 'Email cannot be blank')
 
+class Users(Resource):
+    def get(self):
+        users = UserModel.query.all()
+        return users
+
+api.add_resource(Users, '/api/users/')
+
 @app.route('/')
 def home():
     return '<h1>Flask REST API<h1>'
